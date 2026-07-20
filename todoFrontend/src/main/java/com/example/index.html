@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docket — Todo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main class="page">
+    <section class="docket" aria-labelledby="docket-title">
+        <div class="docket__perf" aria-hidden="true"></div>
+
+        <header class="docket__header">
+            <p class="docket__eyebrow" id="docket-date"></p>
+            <h1 class="docket__title" id="docket-title">Docket</h1>
+        </header>
+
+        <form class="docket__form" id="add-form">
+            <input
+                    type="text"
+                    id="add-input"
+                    class="docket__input"
+                    placeholder="What needs doing?"
+                    autocomplete="off"
+                    maxlength="255"
+            >
+            <button type="submit" class="btn btn--primary">Add</button>
+        </form>
+
+        <div id="error-banner" class="banner banner--error" hidden>
+            Couldn't reach the server. Check the browser console for details.
+        </div>
+
+        <ul class="docket__list" id="todo-list"></ul>
+
+        <p class="docket__empty" id="empty-state" hidden>
+            Nothing on the docket yet — add your first task above.
+        </p>
+
+        <footer class="docket__footer">
+            <span id="todo-count">—</span>
+        </footer>
+    </section>
+</main>
+
+<template id="todo-item-template">
+    <li class="todo" data-id="">
+        <button type="button" class="todo__check" aria-label="Toggle complete">
+            <svg viewBox="0 0 16 16" class="todo__check-icon">
+                <path d="M3 8.5L6.5 12L13 4.5"/>
+            </svg>
+        </button>
+        <span class="todo__title"></span>
+        <input type="text" class="todo__edit-input" maxlength="255" hidden>
+        <div class="todo__actions">
+            <button type="button" class="icon-btn icon-btn--edit" aria-label="Edit task">
+                <svg viewBox="0 0 20 20"><path d="M14.2 2.8a1.7 1.7 0 0 1 2.4 0l.6.6a1.7 1.7 0 0 1 0 2.4L7 16l-4 1 1-4 10.2-10.2Z"/></svg>
+            </button>
+            <button type="button" class="icon-btn icon-btn--delete" aria-label="Delete task">
+                <svg viewBox="0 0 20 20"><path d="M4 6h12M8 6V4.5A1.5 1.5 0 0 1 9.5 3h1A1.5 1.5 0 0 1 12 4.5V6m-6.5 0 .6 10.2A1.5 1.5 0 0 0 7.6 17.7h4.8a1.5 1.5 0 0 0 1.5-1.5L14.5 6"/></svg>
+            </button>
+        </div>
+    </li>
+</template>
+
+<script src="script.js"></script>
+</body>
+</html>
